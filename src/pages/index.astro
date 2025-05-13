@@ -1,16 +1,59 @@
 ---
-import "./src/styles/global.css";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1 class="absolute flex">Astro</h1>
-  </body>
-</html>
+<Layout title="Manzanita Web Design">
+  <main class="">
+    <section
+      class="flex h-dvh w-full flex-col items-center justify-center p-24"
+    >
+      <div class="flex flex-col items-center gap-8">
+        <div class="reveal rounded-lg bg-[url(grain.svg)]">
+          <h1 class="font-special text-7xl text-slate-50 text-shadow-2xs">
+            Manzanita Web Design
+          </h1>
+        </div>
+        <nav>
+          <ul
+            class="flex justify-between gap-16 font-heading text-3xl font-light"
+          >
+            <a href="#">work</a>
+            <a href="#">about</a>
+            <a href="#">contact</a>
+          </ul>
+        </nav>
+        <!-- <h2 class="rounded-lg bg-(--color-bg)/90 p-2">
+          custom websites for your local business.
+        </h2> -->
+      </div>
+    </section>
+    <section class="min-h-dvh">About</section>
+  </main>
+</Layout>
+
+<script>
+  import { gsap } from "gsap";
+  import { SplitText } from "gsap/SplitText";
+  gsap.registerPlugin(SplitText);
+
+  SplitText.create(".split", {
+    type: "words, chars",
+    onSplit(self) {
+      gsap.from(self.words, {
+        duration: 1,
+        delay: 0.5,
+        autoAlpha: 0,
+        stagger: {
+          amount: 0.05,
+        },
+      });
+    },
+  });
+
+  gsap.from(".reveal", {
+    color: "var(--color-bg)",
+    duration: 1,
+    delay: 1,
+    autoAlpha: 0,
+  });
+</script>
