@@ -12,13 +12,13 @@ export default defineConfig({
     fonts: [
       {
         provider: fontProviders.google(),
-        name: "Proza Libre",
-        cssVariable: "--font-proza-libre",
+        name: "League Spartan",
+        cssVariable: "--font-league-spartan",
       },
       {
         provider: fontProviders.google(),
-        name: "Spectral",
-        cssVariable: "--font-spectral",
+        name: "Inter",
+        cssVariable: "--font-inter",
         weights: ["300", "400"],
       },
     ],

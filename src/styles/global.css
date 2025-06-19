@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-special: var(--font-proza-libre);
-  --font-heading: var(--font-spectral);
+  --font-special: var(--font-league-spartan);
+  --font-body: var(--font-inter);
 
-  --color-bg: #f8fafc;
+  --color-bg: #e4e4e7;
+  --color-neutral: #09090b;
 }

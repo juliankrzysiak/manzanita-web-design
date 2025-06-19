@@ -17,10 +17,10 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <Font cssVariable="--font-proza-libre" preload />
-    <Font cssVariable="--font-spectral" preload />
+    <Font cssVariable="--font-league-spartan" preload />
+    <Font cssVariable="--font-inter" preload />
   </head>
-  <body class="bg-(--color-bg)">
+  <body class="bg-(--color-bg) font-body">
     <slot />
   </body>
 </html>

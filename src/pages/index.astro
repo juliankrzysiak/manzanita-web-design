@@ -4,56 +4,33 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Manzanita Web Design">
   <main class="">
-    <section
-      class="flex h-dvh w-full flex-col items-center justify-center p-24"
-    >
-      <div class="flex flex-col items-center gap-8">
-        <div class="reveal rounded-lg bg-[url(grain.svg)]">
-          <h1 class="font-special text-7xl text-slate-50 text-shadow-2xs">
-            Manzanita Web Design
-          </h1>
-        </div>
-        <nav>
-          <ul
-            class="flex justify-between gap-16 font-heading text-3xl font-light"
+    <section class="flex h-dvh flex-col">
+      <div class="flex h-full w-full justify-center bg-neutral pl-6 text-bg">
+        <div
+          class="border-bg-rose flex h-full w-full flex-col items-center justify-center gap-8 border-l-2 px-6"
+        >
+          <h1
+            class="w-fit font-special text-6xl text-shadow-2xs md:text-8xl xl:text-9xl"
           >
+            <span class="split text-rose-600">Manzanita</span>
+            Web Design
+          </h1>
+          <h2 class="text-xl font-light md:text-2xl">
+            custom websites for your local business
+          </h2>
+        </div>
+      </div>
+      <div class="flex h-full w-full items-center justify-center">
+        <nav class="flex w-full justify-center border-b-2 border-neutral pb-1">
+          <ul class="flex w-full max-w-96 justify-around gap-8 px-6 text-xl">
             <a href="#">work</a>
             <a href="#">about</a>
             <a href="#">contact</a>
           </ul>
         </nav>
-        <!-- <h2 class="rounded-lg bg-(--color-bg)/90 p-2">
-          custom websites for your local business.
-        </h2> -->
       </div>
     </section>
-    <section class="min-h-dvh">About</section>
   </main>
 </Layout>
 
-<script>
-  import { gsap } from "gsap";
-  import { SplitText } from "gsap/SplitText";
-  gsap.registerPlugin(SplitText);
-
-  SplitText.create(".split", {
-    type: "words, chars",
-    onSplit(self) {
-      gsap.from(self.words, {
-        duration: 1,
-        delay: 0.5,
-        autoAlpha: 0,
-        stagger: {
-          amount: 0.05,
-        },
-      });
-    },
-  });
-
-  gsap.from(".reveal", {
-    color: "var(--color-bg)",
-    duration: 1,
-    delay: 1,
-    autoAlpha: 0,
-  });
-</script>
+<script></script>
