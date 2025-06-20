@@ -3,16 +3,18 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Manzanita Web Design">
-  <main class="">
+  <main class="flex flex-col">
     <section class="flex h-dvh flex-col">
-      <div class="flex h-full w-full justify-center bg-neutral pl-6 text-bg">
+      <div
+        class="bg-url flex h-full w-full justify-center bg-neutral pl-6 text-bg"
+      >
         <div
           class="border-bg-rose flex h-full w-full flex-col items-center justify-center gap-8 border-l-2 px-6"
         >
           <h1
             class="w-fit font-special text-6xl text-shadow-2xs md:text-8xl xl:text-9xl"
           >
-            <span class="split text-rose-600">Manzanita</span>
+            <span class="split text-accent-primary">Manzanita</span>
             Web Design
           </h1>
           <h2 class="text-xl font-light md:text-2xl">
@@ -30,7 +32,61 @@ import Layout from "../layouts/Layout.astro";
         </nav>
       </div>
     </section>
+    <section class="flex flex-col items-center justify-center gap-24 px-6">
+      <div
+        class="gsap-appear brutal-shadow flex flex-col items-center gap-6 border-2 p-6 font-special text-6xl"
+      >
+        <span class="">Elegant.</span>
+        <span class="">Intuitive.</span>
+        <span class="">Accessible.</span>
+      </div>
+      <div class="flex flex-col items-center gap-8">
+        <p class="text-lg">
+          We work with you to deliver websites that boost <strong
+            id="visiblity"
+            class="gsap-emphasis text-3xl text-accent-primary">visiblity</strong
+          > and <strong
+            id="sales"
+            class="gsap-emphasis text-3xl text-accent-primary">sales</strong
+          >.
+        </p>
+        <button class="bg-neutral px-4 py-3 text-bg">Get in touch</button>
+      </div>
+    </section>
+    <section class="min-h-dvh"></section>
   </main>
 </Layout>
 
-<script></script>
+<style>
+  .brutal-shadow {
+    box-shadow: 10px 10px var(--color-neutral);
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(".gsap-appear", {
+    scrollTrigger: {
+      trigger: ".gsap-appear",
+      start: "top 75%",
+      end: "bottom center",
+      scrub: 1,
+    },
+    boxShadow: "0px 0px",
+  });
+
+  gsap.from(".gsap-emphasis", {
+    scrollTrigger: {
+      trigger: ".gsap-emphasis",
+      start: "top 75%",
+      end: "+=100",
+      scrub: 1,
+    },
+    fontSize: "18px",
+    color: "var(--color-neutral)",
+    stagger: 1,
+  });
+</script>
