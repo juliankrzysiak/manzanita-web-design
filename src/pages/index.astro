@@ -1,5 +1,52 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import scriptbook from "../assets/img/scriptbook_screenshot.png";
+import laurelate from "../assets/img/laurelate_screenshot.png";
+import jeblore from "../assets/img/jeblore_screenshot.png";
+import jialong from "../assets/img/jiaolongart_screenshot.png";
+import { Image } from "astro:assets";
+
+const works: {
+  name: string;
+  img: {
+    src: ImageMetadata;
+    alt: string;
+  };
+}[] = [
+  {
+    name: "Scriptbook",
+    img: { src: scriptbook, alt: "Screenshot of website" },
+  },
+  { name: "Laurelate", img: { src: laurelate, alt: "Screenshot of website" } },
+  { name: "jeblore", img: { src: jeblore, alt: "Screenshot of website" } },
+  {
+    name: "JialongArt",
+    img: { src: jialong, alt: "Screenshot of website" },
+  },
+];
+
+const offers: { title: string; content: string }[] = [
+  {
+    title: "100% Hand-Built Websites",
+    content:
+      "No page builders here! We create everything from scratch for you, offering superior results for your business.",
+  },
+  {
+    title: "Fully Responsive",
+    content:
+      "We design mobile-first and work our way up. Your website will look good for any device your potential customer uses.",
+  },
+  {
+    title: "Optimized Speed",
+    content:
+      "Have you ever exited a website because it took too long to load? Not here. All of our sites are optmized for speed and accessiblity, increasing conversions.",
+  },
+  {
+    title: "From Static to E-Commerce",
+    content:
+      "We can design informational websites for your local business to complex online stores for selling your new idea. Just ask and we can make it happen.",
+  },
+];
 ---
 
 <Layout title="Manzanita Web Design">
@@ -23,25 +70,30 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
       <div class="flex h-full w-full items-center justify-center">
-        <nav class="flex w-full justify-center border-b-2 border-neutral pb-1">
-          <ul class="flex w-full max-w-96 justify-around gap-8 px-6 text-xl">
-            <a href="#">work</a>
+        <nav class="flex w-full justify-center border-b-2 border-neutral">
+          <ul
+            class="flex w-full max-w-96 justify-around gap-8 px-6 font-special text-2xl"
+          >
+            <!-- <a href="#work">services</a> -->
+            <a href="#work">work</a>
             <a href="#">about</a>
             <a href="#">contact</a>
           </ul>
         </nav>
       </div>
     </section>
-    <section class="flex flex-col items-center justify-center gap-24 px-6">
+    <section
+      class="mb-24 flex min-h-dvh flex-col items-center justify-center gap-24 px-6"
+    >
       <div
-        class="gsap-appear brutal-shadow flex flex-col items-center gap-6 border-2 p-6 font-special text-6xl"
+        class="gsap-appear brutal-shadow flex flex-col items-center gap-6 border-2 p-6 font-special text-6xl md:text-8xl"
       >
         <span class="">Elegant.</span>
         <span class="">Intuitive.</span>
         <span class="">Accessible.</span>
       </div>
       <div class="flex flex-col items-center gap-8">
-        <p class="text-lg">
+        <p class="text-center text-lg">
           We work with you to deliver websites that boost <strong
             id="visiblity"
             class="gsap-emphasis text-3xl text-accent-primary">visiblity</strong
@@ -50,16 +102,64 @@ import Layout from "../layouts/Layout.astro";
             class="gsap-emphasis text-3xl text-accent-primary">sales</strong
           >.
         </p>
-        <button class="bg-neutral px-4 py-3 text-bg">Get in touch</button>
+        <!-- <button class="bg-neutral px-4 py-3 text-bg">Get in touch</button> -->
       </div>
+      <ul class="grid grid-cols-1 justify-center gap-2 sm:grid-cols-2">
+        {
+          offers.map((offer) => {
+            return (
+              <li class="max-w-96 border-2 p-4">
+                <h3 class="mb-2 font-special text-xl font-bold lg:text-2xl">
+                  {offer.title}
+                </h3>
+                <p class="lg:text-lg">{offer.content}</p>
+              </li>
+            );
+          })
+        }
+      </ul>
     </section>
-    <section class="min-h-dvh"></section>
+    <section id="work" class="min-h-dvh pl-6">
+      <h2 class="mb-12 font-special text-3xl">A selection of our work</h2>
+      <ul class="flex w-full flex-col items-start gap-8">
+        {
+          works.map((work) => {
+            return (
+              <article class="flex w-full flex-col">
+                <button class="button-work w-full border-b-2 text-start font-special text-5xl">
+                  <>
+                    <span class="button-work- w-2">+</span>
+                    <span>{work.name}</span>
+                  </>
+                </button>
+                <Image
+                  src={work.img.src}
+                  alt={work.img.alt}
+                  height={300}
+                  width={600}
+                  class="mx-6 hidden h-auto self-center border-r-2 border-b-2 border-l-2"
+                />
+              </article>
+            );
+          })
+        }
+      </ul>
+    </section>
+    <section id="contact" class="min-h-dvh px-6">
+      <h2 class="font-special text-6xl" id="about">Who we are</h2>
+      <p></p>
+    </section>
+    <footer></footer>
   </main>
 </Layout>
 
 <style>
   .brutal-shadow {
     box-shadow: 10px 10px var(--color-neutral);
+  }
+
+  .hidden {
+    display: none;
   }
 </style>
 
@@ -88,5 +188,15 @@ import Layout from "../layouts/Layout.astro";
     fontSize: "18px",
     color: "var(--color-neutral)",
     stagger: 1,
+  });
+
+  const workButtons = document.querySelectorAll(".button-work");
+  workButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const img = button.nextElementSibling!;
+      const plus = button.firstElementChild!;
+      img.classList.toggle("hidden");
+      plus.textContent = plus.textContent === "+" ? "-" : "+";
+    });
   });
 </script>
