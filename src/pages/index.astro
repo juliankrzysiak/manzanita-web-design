@@ -8,6 +8,8 @@ import { Image } from "astro:assets";
 
 const works: {
   name: string;
+  info: string;
+  link: string;
   img: {
     src: ImageMetadata;
     alt: string;
@@ -15,12 +17,26 @@ const works: {
 }[] = [
   {
     name: "Scriptbook",
+    info: "notebooks for screenwriters",
+    link: "https://getscriptbook.com/",
     img: { src: scriptbook, alt: "Screenshot of website" },
   },
-  { name: "Laurelate", img: { src: laurelate, alt: "Screenshot of website" } },
-  { name: "jeblore", img: { src: jeblore, alt: "Screenshot of website" } },
+  {
+    name: "Laurelate",
+    info: "chocolate alternative from native plants",
+    link: "https://www.laurelate.com/",
+    img: { src: laurelate, alt: "Screenshot of website" },
+  },
+  {
+    name: "jeblore",
+    info: "online webcomic",
+    link: "https://jeblore.com/",
+    img: { src: jeblore, alt: "Screenshot of website" },
+  },
   {
     name: "JialongArt",
+    info: "select art portfolio",
+    link: "https://jiaolongart.com/",
     img: { src: jialong, alt: "Screenshot of website" },
   },
 ];
@@ -86,7 +102,7 @@ const offers: { title: string; content: string }[] = [
       class="mb-24 flex min-h-dvh flex-col items-center justify-center gap-24 px-6"
     >
       <div
-        class="gsap-appear brutal-shadow flex flex-col items-center gap-6 border-2 p-6 font-special text-6xl md:text-8xl"
+        class="gsap-border-shadow brutal-shadow flex flex-col items-center gap-6 border-2 p-6 font-special text-6xl md:text-8xl"
       >
         <span class="">Elegant.</span>
         <span class="">Intuitive.</span>
@@ -119,26 +135,35 @@ const offers: { title: string; content: string }[] = [
         }
       </ul>
     </section>
-    <section id="work" class="min-h-dvh pl-6">
-      <h2 class="mb-12 font-special text-3xl">A selection of our work</h2>
-      <ul class="flex w-full flex-col items-start gap-8">
+    <section id="work" class="mx-auto flex min-h-dvh flex-col px-6">
+      <h2 class="relative mb-12 font-special text-3xl">
+        A selection of our work
+        <div class="absolute h-[2px] w-full bg-neutral"></div>
+      </h2>
+      <ul class="flex flex-wrap justify-center gap-12 sm:grid-cols-2">
         {
           works.map((work) => {
             return (
-              <article class="flex w-full flex-col">
-                <button class="button-work w-full border-b-2 text-start font-special text-5xl">
-                  <>
-                    <span class="button-work- w-2">+</span>
-                    <span>{work.name}</span>
-                  </>
-                </button>
-                <Image
-                  src={work.img.src}
-                  alt={work.img.alt}
-                  height={300}
-                  width={600}
-                  class="mx-6 hidden h-auto self-center border-r-2 border-b-2 border-l-2"
-                />
+              <article class="flex flex-col gap-4">
+                <div class="">
+                  <h3 class="text-start font-special text-5xl">{work.name}</h3>
+                  <p class="pl-1 font-light">{work.info}</p>
+                </div>
+                <div class="relative">
+                  <Image
+                    src={work.img.src}
+                    alt={work.img.alt}
+                    height={400}
+                    width={400}
+                    class="brutal-shadow h-auto"
+                  />
+                  <a
+                    href={work.link}
+                    class="border-br absolute right-0 bottom-0 bg-neutral px-4 py-3 text-bg"
+                  >
+                    See It Online
+                  </a>
+                </div>
               </article>
             );
           })
@@ -146,7 +171,7 @@ const offers: { title: string; content: string }[] = [
       </ul>
     </section>
     <section id="contact" class="min-h-dvh px-6">
-      <h2 class="font-special text-6xl" id="about">Who we are</h2>
+      <!-- <h2 class="font-special text-6xl" id="about">Who we are</h2> -->
       <p></p>
     </section>
     <footer></footer>
@@ -168,9 +193,9 @@ const offers: { title: string; content: string }[] = [
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from(".gsap-appear", {
+  gsap.from(".gsap-border-shadow", {
     scrollTrigger: {
-      trigger: ".gsap-appear",
+      trigger: ".gsap-border-shadow",
       start: "top 75%",
       end: "bottom center",
       scrub: 1,
