@@ -4,6 +4,7 @@ import scriptbook from "../assets/img/scriptbook_screenshot.png";
 import laurelate from "../assets/img/laurelate_screenshot.png";
 import jeblore from "../assets/img/jeblore_screenshot.png";
 import jialong from "../assets/img/jiaolongart_screenshot.png";
+import julian from "../assets/img/julian.jpg";
 import { Image } from "astro:assets";
 
 const works: {
@@ -135,7 +136,7 @@ const offers: { title: string; content: string }[] = [
         }
       </ul>
     </section>
-    <section id="work" class="mx-auto flex min-h-dvh flex-col px-6">
+    <section id="work" class="mx-auto mb-36 flex flex-col px-6">
       <h2 class="relative mb-12 font-special text-3xl">
         A selection of our work
         <div class="absolute h-[2px] w-full bg-neutral"></div>
@@ -144,7 +145,7 @@ const offers: { title: string; content: string }[] = [
         {
           works.map((work) => {
             return (
-              <article class="flex flex-col gap-4">
+              <li class="gsap-slide flex flex-col gap-4">
                 <div class="">
                   <h3 class="text-start font-special text-5xl">{work.name}</h3>
                   <p class="pl-1 font-light">{work.info}</p>
@@ -159,20 +160,71 @@ const offers: { title: string; content: string }[] = [
                   />
                   <a
                     href={work.link}
-                    class="border-br absolute right-0 bottom-0 bg-neutral px-4 py-3 text-bg"
+                    class="absolute right-0 bottom-0 border-2 border-neutral bg-neutral px-4 py-3 text-bg duration-150 hover:border-2 hover:border-bg"
                   >
                     See It Online
                   </a>
                 </div>
-              </article>
+              </li>
             );
           })
         }
       </ul>
     </section>
-    <section id="contact" class="min-h-dvh px-6">
-      <!-- <h2 class="font-special text-6xl" id="about">Who we are</h2> -->
-      <p></p>
+    <section id="about" class="mx-auto mb-24 min-h-dvh px-6">
+      <p class="mb-12 font-special text-6xl">
+        Making websites for the <br />Antelope Valley, California, and beyond.<br
+        /> Since 2023.
+      </p>
+      <div class="flex w-fit flex-wrap justify-center gap-12">
+        <figure class="relative w-fit">
+          <Image
+            src={julian}
+            alt="Selfie of Julian Krzysiak"
+            width={400}
+            height={400}
+            class="border-2 border-neutral"
+          />
+          <figcaption
+            class="absolute right-0 bottom-0 flex flex-col items-end bg-neutral px-4 py-3 text-end text-sm text-bg"
+          >
+            Julian Krzysiak,<br />
+            Owner & Developer
+          </figcaption>
+        </figure>
+
+        <div class="prose">
+          <p>
+            Howdy, I'm Julian, and I'm the lead developer in charge of <span
+              class="font-special text-xl"
+            >
+              Manzanita Web Design.
+            </span>
+            At first I just made websites for friends and family, always emphasizing
+            site speed and efficient design.
+          </p>
+          <p>
+            Eventually, I wanted to share my skills with those around me. Many
+            people have amazing ideas and awesome products, but business growth
+            relies so much on communication and presentation.
+          </p>
+          <p>
+            And that's where we come in. We provide great websites to showcase
+            your new popup, local storefront, or online business. Invest in us,
+            and you'll get dividends on reaching your next new client.
+          </p>
+          <p>Thank you!</p>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="mx-auto px-6">
+      <div class="flex flex-col gap-6 font-special text-6xl">
+        <h2>Questions?</h2>
+        <h2>Quotes?</h2>
+        <h2>Or Just Interested?</h2>
+      </div>
+
+      <h2>Let's get in touch!</h2>
     </section>
     <footer></footer>
   </main>
@@ -193,14 +245,28 @@ const offers: { title: string; content: string }[] = [
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
+  const slideElements = document.querySelectorAll(".gsap-slide");
+  slideElements.forEach((el) => {
+    gsap.from(el, {
+      x: "random(-50,50)",
+      autoAlpha: 0,
+      scrollTrigger: {
+        trigger: el,
+        start: "top bottom",
+        end: "center bottom",
+        scrub: 1,
+      },
+    });
+  });
+
   gsap.from(".gsap-border-shadow", {
+    boxShadow: "0px 0px",
     scrollTrigger: {
       trigger: ".gsap-border-shadow",
       start: "top 75%",
-      end: "bottom center",
+      end: "center center",
       scrub: 1,
     },
-    boxShadow: "0px 0px",
   });
 
   gsap.from(".gsap-emphasis", {
@@ -213,15 +279,5 @@ const offers: { title: string; content: string }[] = [
     fontSize: "18px",
     color: "var(--color-neutral)",
     stagger: 1,
-  });
-
-  const workButtons = document.querySelectorAll(".button-work");
-  workButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const img = button.nextElementSibling!;
-      const plus = button.firstElementChild!;
-      img.classList.toggle("hidden");
-      plus.textContent = plus.textContent === "+" ? "-" : "+";
-    });
   });
 </script>
