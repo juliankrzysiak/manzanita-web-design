@@ -247,7 +247,10 @@ const offers: { title: string; content: string }[] = [
         </div>
       </div>
     </section>
-    <footer class="border-t-2 px-4 py-1">© 2025 Manzanita Web Design</footer>
+    <footer class="flex justify-between border-t-2 px-4 py-1 text-sm">
+      <span> © 2025 Manzanita Web Design </span>
+      <button class="party">confetti</button>
+    </footer>
   </main>
 </Layout>
 
@@ -263,6 +266,7 @@ const offers: { title: string; content: string }[] = [
 
 <script>
   import gsap from "gsap";
+  import party from "party-js";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
   let mm = gsap.matchMedia();
@@ -335,5 +339,9 @@ const offers: { title: string; content: string }[] = [
       end: "+=100",
       scrub: 1,
     },
+  });
+  document.querySelector(".party")!.addEventListener("click", function (e) {
+    // @ts-ignore
+    party.confetti(this);
   });
 </script>
