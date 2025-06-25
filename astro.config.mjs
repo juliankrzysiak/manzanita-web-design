@@ -14,6 +14,7 @@ export default defineConfig({
         provider: fontProviders.google(),
         name: "League Spartan",
         cssVariable: "--font-league-spartan",
+        weights: ["400", "500", "700"],
       },
       {
         provider: fontProviders.google(),

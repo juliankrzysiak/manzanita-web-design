@@ -220,11 +220,31 @@ const offers: { title: string; content: string }[] = [
         </div>
       </div>
     </section>
-    <section id="contact" class="mx-auto px-6">
-      <div class="flex flex-col gap-6 font-special text-6xl">
-        <h2>Questions?</h2>
-        <h2>Quotes?</h2>
-        <h2>Or Just Interested?</h2>
+    <section
+      id="contact"
+      class="mx-auto mb-24 flex min-h-[50dvh] flex-col gap-12 px-6"
+    >
+      <div class="flex flex-col gap-2 font-special text-5xl md:text-7xl">
+        <p>Questions?</p>
+        <p>Quotes?</p>
+        <p>Ready to start?</p>
+      </div>
+      <div class="flex flex-col items-center gap-12">
+        <h2
+          class="gsap-contact text-center font-special text-6xl font-medium text-accent-primary md:text-9xl"
+        >
+          Let's get in touch!
+        </h2>
+        <div class="flex flex-col items-center gap-4">
+          <p class="text-center text-lg">
+            info@<span>manzanita</span><span class="hidden">apple</span
+            >webdesign.<span class="hidden">example.</span><span>com</span>
+          </p>
+          <button
+            class="copy border-2 px-4 py-3 text-lg duration-150 hover:border-accent-primary"
+            >Copy Email</button
+          >
+        </div>
       </div>
 
       <h2>Let's get in touch!</h2>
