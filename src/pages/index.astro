@@ -94,10 +94,15 @@ const offers: { title: string; content: string }[] = [
           <ul
             class="flex w-full max-w-96 justify-around gap-8 px-6 font-special text-2xl"
           >
-            <!-- <a href="#work">services</a> -->
-            <a href="#work">work</a>
-            <a href="#about">about</a>
-            <a href="#contact">contact</a>
+            <li>
+              <a href="#work">work</a>
+            </li>
+            <li>
+              <a href="#about">about</a>
+            </li>
+            <li>
+              <a href="#contact">contact</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -122,7 +127,6 @@ const offers: { title: string; content: string }[] = [
             class="gsap-emphasis text-3xl text-accent-primary">sales</strong
           >.
         </p>
-        <!-- <button class="bg-neutral px-4 py-3 text-bg">Get in touch</button> -->
       </div>
       <ul class="grid grid-cols-1 justify-center gap-2 sm:grid-cols-2">
         {
@@ -156,7 +160,7 @@ const offers: { title: string; content: string }[] = [
                 <div class="relative">
                   <Image
                     src={work.img.src}
-                    alt={work.img.alt}
+                    alt=""
                     height={400}
                     width={400}
                     class="brutal-shadow h-auto"
@@ -225,9 +229,9 @@ const offers: { title: string; content: string }[] = [
       class="mx-auto mb-24 flex min-h-[50dvh] flex-col gap-12 px-6"
     >
       <div class="flex flex-col gap-2 font-special text-5xl md:text-7xl">
-        <p>Questions?</p>
-        <p>Quotes?</p>
-        <p>Ready to start?</p>
+        <h3>Questions?</h3>
+        <h3>Quotes?</h3>
+        <h3>Ready to start?</h3>
       </div>
       <div class="flex flex-col items-center gap-12">
         <h2
@@ -241,7 +245,7 @@ const offers: { title: string; content: string }[] = [
             >webdesign.<span class="hidden">example.</span><span>com</span>
           </p>
           <button
-            class="copy border-2 px-4 py-3 text-lg duration-150 hover:border-accent-primary"
+            class="copy border-2 px-4 py-3 text-lg outline-accent-primary duration-150 hover:border-accent-primary active:outline-2"
             >Copy Email</button
           >
         </div>
@@ -258,10 +262,6 @@ const offers: { title: string; content: string }[] = [
   .brutal-shadow {
     box-shadow: 10px 10px var(--color-neutral);
   }
-
-  .hidden {
-    display: none;
-  }
 </style>
 
 <script>
@@ -269,7 +269,6 @@ const offers: { title: string; content: string }[] = [
   import party from "party-js";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
-  let mm = gsap.matchMedia();
 
   const copy = document.querySelector(".copy");
   copy?.addEventListener("click", async () => {
@@ -282,11 +281,12 @@ const offers: { title: string; content: string }[] = [
     }
   });
 
+  let mm = gsap.matchMedia();
   const slideElements = document.querySelectorAll(".gsap-slide");
   slideElements.forEach((el) => {
     mm.add("(prefers-reduced-motion: reduce)", (context) => {
       gsap.from(el, {
-        autoAlpha: 0,
+        opacity: 0,
         scrollTrigger: {
           trigger: el,
           start: "top bottom",
@@ -298,7 +298,7 @@ const offers: { title: string; content: string }[] = [
     mm.add("(prefers-reduced-motion: no-preference)", (context) => {
       gsap.from(el, {
         x: "random(-50,50)",
-        autoAlpha: 0,
+        opacity: 0,
         scrollTrigger: {
           trigger: el,
           start: "top bottom",
