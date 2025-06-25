@@ -71,7 +71,7 @@ const offers: { title: string; content: string }[] = [
   description="We make custom websites for your local business. Based in the Antelope Valley."
 >
   <main class="flex flex-col">
-    <section class="flex h-dvh flex-col">
+    <section class="flex h-[95dvh] flex-col">
       <div
         class="bg-url flex h-full w-full justify-center bg-neutral pl-6 text-bg"
       >
@@ -96,8 +96,8 @@ const offers: { title: string; content: string }[] = [
           >
             <!-- <a href="#work">services</a> -->
             <a href="#work">work</a>
-            <a href="#">about</a>
-            <a href="#">contact</a>
+            <a href="#about">about</a>
+            <a href="#contact">contact</a>
           </ul>
         </nav>
       </div>
@@ -139,7 +139,7 @@ const offers: { title: string; content: string }[] = [
         }
       </ul>
     </section>
-    <section id="work" class="mx-auto mb-36 flex flex-col px-6">
+    <section id="work" class="mx-auto mb-36 flex flex-col overflow-hidden px-6">
       <h2 class="relative mb-12 font-special text-3xl">
         A selection of our work
         <div class="absolute h-[2px] w-full bg-neutral"></div>
@@ -174,7 +174,7 @@ const offers: { title: string; content: string }[] = [
         }
       </ul>
     </section>
-    <section id="about" class="mx-auto mb-24 min-h-dvh px-6">
+    <section id="about" class="mx-auto mb-24 px-6">
       <p class="mb-12 font-special text-6xl">
         Making websites for the <br />Antelope Valley, California, and beyond.<br
         /> Since 2023.
@@ -246,10 +246,8 @@ const offers: { title: string; content: string }[] = [
           >
         </div>
       </div>
-
-      <h2>Let's get in touch!</h2>
     </section>
-    <footer></footer>
+    <footer class="border-t-2 px-4 py-1">© 2025 Manzanita Web Design</footer>
   </main>
 </Layout>
 
@@ -267,18 +265,43 @@ const offers: { title: string; content: string }[] = [
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
+  let mm = gsap.matchMedia();
+
+  const copy = document.querySelector(".copy");
+  copy?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("info@manzanitawebdesign.com");
+      copy.textContent = "Email copied";
+    } catch (error) {
+      console.log(error);
+      copy.textContent = "Couldn't copy";
+    }
+  });
 
   const slideElements = document.querySelectorAll(".gsap-slide");
   slideElements.forEach((el) => {
-    gsap.from(el, {
-      x: "random(-50,50)",
-      autoAlpha: 0,
-      scrollTrigger: {
-        trigger: el,
-        start: "top bottom",
-        end: "center bottom",
-        scrub: 1,
-      },
+    mm.add("(prefers-reduced-motion: reduce)", (context) => {
+      gsap.from(el, {
+        autoAlpha: 0,
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "center bottom",
+          scrub: 1,
+        },
+      });
+    });
+    mm.add("(prefers-reduced-motion: no-preference)", (context) => {
+      gsap.from(el, {
+        x: "random(-50,50)",
+        autoAlpha: 0,
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "center bottom",
+          scrub: 1,
+        },
+      });
     });
   });
 
@@ -302,5 +325,15 @@ const offers: { title: string; content: string }[] = [
     fontSize: "18px",
     color: "var(--color-neutral)",
     stagger: 1,
+  });
+
+  gsap.from(".gsap-contact", {
+    color: "var(--color-neutral)",
+    scrollTrigger: {
+      trigger: ".gsap-contact",
+      start: "top 75%",
+      end: "+=100",
+      scrub: 1,
+    },
   });
 </script>
