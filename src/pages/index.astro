@@ -234,27 +234,31 @@ const offers: { title: string; content: string }[] = [
         <h3>Quotes?</h3>
         <h3>Ready to start?</h3>
       </div>
-      <div class="flex flex-col items-center gap-12">
+      <div class="flex flex-col items-center gap-8">
         <h2
           class="gsap-contact text-center font-special text-6xl font-medium text-accent-primary md:text-9xl"
         >
           Let's get in touch!
         </h2>
-        <div class="flex flex-col items-center gap-4">
-          <p class="text-center text-lg">
-            info@<span>manzanita</span><span class="hidden">apple</span
-            >webdesign.<span class="hidden">example.</span><span>com</span>
-          </p>
-          <button
-            class="copy border-2 px-4 py-3 text-lg outline-accent-primary duration-150 hover:border-accent-primary active:outline-2"
-            >Copy Email</button
-          >
-        </div>
+        <a
+          href="https://calendar.app.google/3WjJRhiMfrgufLaQ9
+"
+          class="border-2 px-4 py-3 text-lg outline-accent-primary duration-150 hover:border-accent-primary active:outline-2"
+          >Book an Appointment</a
+        >
       </div>
     </section>
-    <footer class="flex justify-between border-t-2 px-4 py-1 text-sm">
-      <span> © 2025 Manzanita Web Design </span>
-      <button class="party">confetti</button>
+    <footer
+      class="flex flex-wrap justify-between gap-4 border-t-2 px-4 py-1 text-sm"
+    >
+      <span>© 2025 Manzanita Web Design</span>
+      <button class="party" aria-label="Shoot out silly confetti"
+        >confetti</button
+      >
+      <button class="copy" aria-label="Copy email">
+        info@<span>manzanita</span><span class="hidden">apple</span
+        >webdesign.<span class="hidden">example.</span><span>com</span>
+      </button>
     </footer>
   </main>
 </Layout>
@@ -275,10 +279,8 @@ const offers: { title: string; content: string }[] = [
   copy?.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText("info@manzanitawebdesign.com");
-      copy.textContent = "Email copied";
     } catch (error) {
       console.log(error);
-      copy.textContent = "Couldn't copy";
     }
   });
 
