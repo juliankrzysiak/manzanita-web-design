@@ -5,6 +5,8 @@ import laurelate from "../assets/img/laurelate_screenshot.png";
 import jeblore from "../assets/img/jeblore_screenshot.png";
 import jiaolong from "../assets/img/jiaolongart_screenshot.png";
 import julian from "../assets/img/julian.jpg";
+import noai from "../assets/img/no-ai-icon-08.png";
+
 import californianativeseeds from "../assets/img/californianativeseeds_screenshot.png";
 
 import { Image } from "astro:assets";
@@ -259,16 +261,24 @@ const offers: { title: string; content: string }[] = [
       </div>
     </section>
     <footer
-      class="flex flex-wrap justify-between gap-4 border-t-2 px-4 py-1 text-sm"
+      class="flex flex-col items-center justify-between gap-4 border-t-2 px-4 py-2 text-sm sm:flex-row"
     >
-      <span>© 2025 Manzanita Web Design</span>
-      <button class="party" aria-label="Shoot out silly confetti"
-        >confetti</button
-      >
-      <button class="copy" aria-label="Copy email">
+      <span class="">© 2026 Manzanita Web Design</span>
+      <button class="copy select-text" aria-label="Copy email">
         info@<span>manzanita</span><span class="hidden">apple</span
         >webdesign.<span class="hidden">example.</span><span>com</span>
       </button>
+      <button class="party text-left" aria-label="Shoot out silly confetti"
+        >confetti</button
+      >
+      <a href="https://no-ai-icon.com/statement/?url=manzanitawebdesign.com">
+        <Image
+          src={noai}
+          alt="100% Human Created Content"
+          width={75}
+          height={75}
+        />
+      </a>
     </footer>
   </main>
 </Layout>
